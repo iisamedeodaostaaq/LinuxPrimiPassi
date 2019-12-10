@@ -1,0 +1,27 @@
+# IL SEGUENTE CODICE ILLUSTRA L'UTILIZZO DI ALCUNI PARAMETRI UTILIZZATI IN COMANDI
+# CON OPZIONI ED ARGOMENTI: PARAMETRI POSIZIONALI
+
+n=$#   # Il parametro $# contiene il numero dei parametri posizionali passati al processo
+echo "Hai inserito $n argomenti"
+echo $@ # Il parametro $@ contiene itutti i valori di tutti i parametri posizionali
+echo $* # Simile a $@
+for (( i=0; i<$n; i++))
+do
+ #echo ${1}
+ k[$i]=${1}   #Assegno i parametri posizionali all'array k[]
+ echo ${k[$i]} #Visualizzo l'iesimo elemento di k[]
+ z=${k[$i]}    #Assegno l'iesimo elemento di k[] ad una variabile z
+ echo ">>>>>>>>>>>> $z " #Visualizzo il contenuto di z
+ shift                   #Scorro i parametri posizionali verso sinistra
+ if [ ${k[$i]} != 'd' -a ${k[$i]} != 'c' ]
+ then
+  if [ ${k[$j]} -lt ${k[$i]} ]
+   then
+     echo 'Vera se il contenuto di  ${k[$j]} è minore di ${k[$i]} '
+   fi
+ else
+   echo "HAI INSERITO UNA d O UNA c"
+ fi
+done
+echo 'Dopo lo shift i parametri $* e $@ perdono il primo elemento'
+echo 'Dopo N shift ??????????'
