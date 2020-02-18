@@ -1,0 +1,23 @@
+clear                               #Pulisce lo schermo
+set `wc -l NUMERI`                  #Restituisce il numero di linee trovate ed il nome del file in $1 e $2
+nl=$1
+for ((i=1; i<=$nl; i++))
+do
+    set `head -$i NUMERI | tail -1` #Estrae una linea per volta dal file e la assegna ai parametri posizionali
+    echo "linea $i"
+    echo "$# VALORI $*"
+done
+set `cat NUMERI`                    #Cattura il contenuto del file e lo assegna ai parametri posizionali
+echo "I parametri assegnati sono $#"
+n=$#
+echo "$1 $2 $3 $4 $5"		    #Stampa i primi 5 argomenti
+for ((i=0; i<$n; i++))              #Questo ciclo assegna al vettore k il contenuto del file utilizzando i parametri posizionali
+do
+    k[$i]=${1}
+    shift
+done
+for ((i=0; i<$n; i++))              #Questo ciclo stampa il contenuto dell'array k
+do
+    echo -n "${k[$i]}  "
+
+done
